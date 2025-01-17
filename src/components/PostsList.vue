@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { onMounted, onUnmounted, onUpdated } from 'vue'
 import SinglePosts from './SinglePosts'
 export default {
   components: { SinglePosts },
@@ -14,6 +15,16 @@ setup(props){
     // object pone san myo htoke ka tal 
     // console.log(props.posts);
     // console.log(props.posts[0].title);
+
+    onMounted(()=>{
+      console.log("component mounted");
+    });
+    onUnmounted(()=>{
+      console.log('component unmounted');
+    });
+    onUpdated(()=>{
+      console.log('data updated...');
+    })
 
 }
 }
