@@ -1,11 +1,9 @@
 <template>
   <div class="home">
-    <div v-if="showPost">
-      <PostsList :posts="posts"></PostsList>
+    <div v-for="post in posts" :key="post.id">
+      <h1>{{post.title}}</h1>
+      <h3>{{post.detail}}</h3>
     </div>
-    <button @click='showPost =! showPost'>toggle post</button>
-    <br>
-    <button @click="posts.pop()">delete</button>
   </div>
 </template>
 
@@ -16,16 +14,22 @@ import { ref } from "vue";
 export default {
   components: { PostsList },
   setup() {
-    let showPost = ref(true);
-    let posts = ref([
-      {
-        title: "post title one",
-        body: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis debitis, repudiandae sequi ducimus laboriosam est consequuntur voluptates. Officia repudiandae sint tempora? Quo enim deserunt accusantium obcaecati blanditiis minus, rem iusto! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam dicta soluta sapiente assumenda numquam saepe neque iusto? Corrupti accusamus nemo, sequi eum ab similique commodi ad dolore, facere rem nam.",
-        id: 1,
-      },
-      { title: "post title two", body: "lorem ipsum", id: 2 },
-    ]);
-    return { posts,showPost };
+    let posts = ref([]);
+    let load = async () => {
+      try{
+        let response = await fetch("http://localhost:3000/posts");
+        if(response.status === 404){
+          throw new Error("not found url...");
+        }
+        let datas = await response.json();
+        posts.value = datas
+      }catch(err){
+        console.log(err.message);
+      }
+    };
+    load();
+
+    return { posts };
   },
 };
 </script>
