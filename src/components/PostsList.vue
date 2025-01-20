@@ -1,23 +1,19 @@
 <template>
   <h1>Post lists</h1>
   <div v-for="post in posts" :key="post.id">
-    <SinglePost :post="post"></SinglePost>
+    <SinglePosts :post="post"></SinglePosts>
   </div>
 </template>
 
 <script>
-import SinglePost from './SinglePost'
+import SinglePosts from "./SinglePosts";
 export default {
-  components: { SinglePost },
-    props:["posts"],
-    setup(props){
-      
-    }
-   
-   
-}
+  components: {
+    SinglePosts,
+  },
+  props: ["posts"],
+  setup(props) {},
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
