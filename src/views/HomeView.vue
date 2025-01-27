@@ -14,12 +14,12 @@
 
 <script>
 import PostsList from "../components/PostsList";
-import getPost from "../composable/getPost";
+import getPosts from "../composable/getPosts";
 export default {
   components: { PostsList },
   setup() {
-    // composable function
-    let { posts, errors, load } = getPost();
+    // composable function; destructuring lote pay tar
+    let { posts, errors, load } = getPosts();
     load();
     return { posts, errors };
   },

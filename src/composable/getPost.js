@@ -1,20 +1,21 @@
 import { ref } from "vue";
 
-let getPost = () => {
-  let posts = ref([]);
-  let errors = ref("");
+let getPost =(id) => {
+  let post = ref(null);
+  let error = ref("");
   let load = async () => {
     try {
-      let response = await fetch("http://localhost:3000/posts");
+      let response = await fetch("http://localhost:3000/posts/" + id);
       if (response.status === 404) {
-        throw new Error("Wrong Url 404 Error");
+        throw new Error("not found exact url");
       }
-      let datas = await response.json();
-      posts.value = datas;
+      let data = await response.json();
+      post.value = data;
     } catch (err) {
-      errors.value = err;
+      error.value = err.message;
     }
   };
-  return { posts, errors, load };
+  return { post, error, load };
 };
+
 export default getPost;
