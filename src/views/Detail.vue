@@ -1,7 +1,7 @@
 <template>
-  <h1>Details {{ id }}</h1>
   <div v-if="post">
-    {{ post }}
+    <h1>{{post.title}}</h1>
+    <h3>{{post.detail}}</h3>
   </div>
   <div v-else>
     <p>loading...</p>
