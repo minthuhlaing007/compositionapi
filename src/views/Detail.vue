@@ -1,7 +1,10 @@
 <template>
   <h1>Details {{ id }}</h1>
-  <div>
-    {{post}}
+  <div v-if="post">
+    {{ post }}
+  </div>
+  <div v-else>
+    <p>loading...</p>
   </div>
 </template>
 
@@ -12,7 +15,7 @@ export default {
   setup(props) {
     let { post, error, load } = getPost(props.id);
     load();
-    return {post,error};
+    return { post, error };
   },
 };
 </script>
