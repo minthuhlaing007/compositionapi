@@ -7,16 +7,18 @@
       <PostsList :posts="posts"></PostsList>
     </div>
     <div v-else>
-      <h1>Loading ...</h1>
+      <Spinner></Spinner>
     </div>
   </div>
 </template>
 
 <script>
+import Spinner from '../components/Spinner'
 import PostsList from "../components/PostsList";
 import getPosts from "../composable/getPosts";
 export default {
-  components: { PostsList },
+  components: {
+    Spinner, PostsList },
   setup() {
     // composable function; destructuring lote pay tar
     let { posts, errors, load } = getPosts();
