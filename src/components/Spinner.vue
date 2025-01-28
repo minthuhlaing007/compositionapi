@@ -10,10 +10,10 @@ export default {
 
 <style>
 .spinner{
-  width: 20px;
-  height: 20px;
+  width: 50px;
+  height: 50px;
   margin: 50px auto;
-  border: 3px dashed transparent;
+  border: 3px dotted transparent;
   border-top-color: purple;
   border-radius: 50%;
   animation: spin 1s infinite;
