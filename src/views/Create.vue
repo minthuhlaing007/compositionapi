@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="addPost">
     <label>Title</label>
     <input type="text" required v-model="title" />
     <label>Body</label>
@@ -31,7 +31,21 @@ export default {
       tag.value = "";
     };
 
-    return { title, body, tag, handleKeydown, tags };
+    let addPost = async () => {
+      await fetch("http://localhost:3000/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title.value,
+          body: body.value,
+          tags: tags.value,
+        }),
+      });
+    };
+
+    return { title, body, tag, handleKeydown, tags, addPost };
   },
 };
 </script>
@@ -82,6 +96,12 @@ button {
   border: none;
   padding: 8px 16px;
   font-size: 18px;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+button:hover {
+  background: #ff6600;
+  cursor: pointer;
 }
 .pill {
   display: inline-block;
