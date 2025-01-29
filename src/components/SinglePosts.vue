@@ -5,7 +5,10 @@
     </router-link>
     <p>{{ post.body }}</p>
     <div v-for="tag in post.tags" :key="tag" class="pill">
-      {{ tag }}
+      <!-- {{ tag }} -->
+      <router-link :to="{ name: 'Tag', params: { tag: tag } }">
+        {{ tag }}
+      </router-link>
     </div>
   </div>
 </template>
