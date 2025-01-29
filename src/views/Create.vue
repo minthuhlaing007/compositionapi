@@ -16,8 +16,11 @@
 
 <script>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   setup() {
+    let router = useRouter(); // this.$router nae choot soot sin tuu mhu shi par tal;
+
     let title = ref("");
     let body = ref("");
     let tag = ref("");
@@ -43,6 +46,8 @@ export default {
           tags: tags.value,
         }),
       });
+      // redirect user to home page
+      router.push("/");
     };
 
     return { title, body, tag, handleKeydown, tags, addPost };

@@ -1,22 +1,22 @@
 {
   "posts": [
     {
-      "id": 1,
+      "id": "1",
       "title": "post title one",
       "body": "post detail one"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "post title two",
       "body": "post detail two"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "post title three",
       "body": "post detail three"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "post title four",
       "body": "post detail four"
     },
@@ -40,6 +40,15 @@
         "css",
         "js",
         "vuejs"
+      ]
+    },
+    {
+      "id": "9f79",
+      "title": "router",
+      "body": "router",
+      "tags": [
+        "vuejs router",
+        "router example"
       ]
     }
   ]
