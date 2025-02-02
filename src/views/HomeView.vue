@@ -5,10 +5,10 @@
     </div>
     <div v-if="posts.length > 0" class="layout">
       <div>
-      <PostsList :posts="posts"></PostsList>
+        <PostsList :posts="posts"></PostsList>
       </div>
       <div>
-      <TagCloud></TagCloud>
+        <TagCloud :posts="posts"></TagCloud>
       </div>
     </div>
     <div v-else>
@@ -18,14 +18,16 @@
 </template>
 
 <script>
-import TagCloud from '../components/TagCloud'
-import Spinner from '../components/Spinner'
+import TagCloud from "../components/TagCloud";
+import Spinner from "../components/Spinner";
 import PostsList from "../components/PostsList";
 import getPosts from "../composable/getPosts";
 export default {
   components: {
     TagCloud,
-    Spinner, PostsList },
+    Spinner,
+    PostsList,
+  },
   setup() {
     // composable function; destructuring lote pay tar
     let { posts, errors, load } = getPosts();
@@ -36,14 +38,14 @@ export default {
 </script>
 
 <style>
-.home{
+.home {
   max-width: 1200px;
   margin: 0 auto;
   padding: 10px;
 }
-.layout{
+.layout {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  gap:20px;
+  gap: 20px;
 }
 </style>
