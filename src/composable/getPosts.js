@@ -1,25 +1,21 @@
 import { ref } from "vue";
-
+import { db } from "../firebase/config";
 let getPosts = () => {
   let posts = ref([]);
-  let errors = ref("");
+  let error = ref("");
   let load = async () => {
     try {
-      // delaying 2s for adding loading features; this is temporary code
-      // await new Promise((resolve,reject)=>{
-      //   setTimeout(resolve,2000);
-      // });
-
-      let response = await fetch("http://localhost:3000/posts");
-      if (response.status === 404) {
-        throw new Error("Wrong Url 404 Error");
-      }
-      let datas = await response.json();
-      posts.value = datas;
+      let res = await db.collection("posts").get();
+      posts.value = res.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+        // console.log(doc.id);
+      });
+      // console.log(res.docs)
     } catch (err) {
-      errors.value = err.message;
+      // console.log(error.message)
+      error.value = err.message;
     }
   };
-  return { posts, errors, load };
+  return { posts, error, load };
 };
 export default getPosts;
